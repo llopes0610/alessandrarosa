@@ -45,23 +45,22 @@ export default function Home() {
     <div className="min-h-screen bg-stone-50">
       {/* ================= Header ================= */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
             ? 'bg-white/95 backdrop-blur-md shadow-sm'
             : 'bg-transparent'
-        }`}
+          }`}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
             <div>
-              <div className="font-serif text-xl sm:text-2xl text-stone-900">
+              <div className="font-serif text-2xl sm:text-3xl leading-none tracking-tight text-stone-900">
                 Recomeçar
               </div>
-              <div className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-stone-500">
+
+              <div className="mt-1 text-[10px] sm:text-xs uppercase tracking-[0.35em] text-stone-500 font-light">
                 com propósito
               </div>
             </div>
-
             <button
               onClick={() =>
                 document
@@ -85,9 +84,8 @@ export default function Home() {
       <section
         id="philosophy"
         ref={(el) => addToRefs(el, 1)}
-        className={`bg-white px-4 py-16 transition-all duration-1000 sm:px-6 sm:py-24 lg:px-8 lg:py-32 ${
-          visibleSections.has(1) ? 'opacity-100' : 'opacity-0'
-        }`}
+        className={`bg-white px-4 py-16 transition-all duration-1000 sm:px-6 sm:py-24 lg:px-8 lg:py-32 ${visibleSections.has(1) ? 'opacity-100' : 'opacity-0'
+          }`}
       >
         <div className="mx-auto max-w-4xl text-center">
           <p className="mb-6 font-serif text-3xl leading-[1.2] text-stone-900 sm:mb-8 sm:text-4xl lg:text-5xl xl:text-6xl">
