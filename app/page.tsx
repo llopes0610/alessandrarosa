@@ -19,7 +19,6 @@ export default function Home() {
 
       sectionRefs.current.forEach((ref, index) => {
         if (!ref) return;
-
         const rect = ref.getBoundingClientRect();
         if (rect.top < window.innerHeight * 0.75) {
           setVisibleSections((prev) => {
@@ -45,29 +44,31 @@ export default function Home() {
     <div className="min-h-screen bg-stone-50">
       {/* ================= Header ================= */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
             ? 'bg-white/95 backdrop-blur-md shadow-sm'
             : 'bg-transparent'
-          }`}
+        }`}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
-            <div>
-              <div className="font-serif text-2xl sm:text-3xl leading-none tracking-tight text-stone-900">
-                Recomeçar
-              </div>
-
-              <div className="mt-1 text-[10px] sm:text-xs uppercase tracking-[0.35em] text-stone-500 font-light">
-                com propósito
-              </div>
+            {/* Logo */}
+            <div className="flex items-center">
+              <img
+                src="/logoNome.svg"
+                alt="Recomeçar com Propósito — Alessandra Rosa"
+                className="w-36 sm:w-48 h-auto"
+              />
             </div>
+
+            {/* CTA */}
             <button
               onClick={() =>
                 document
                   .querySelector('#cta')
                   ?.scrollIntoView({ behavior: 'smooth' })
               }
-              className="rounded-full bg-stone-900 px-5 py-2.5 text-sm font-light text-white transition hover:bg-stone-800 sm:px-6 sm:py-3 sm:text-base"
+              className="rounded-full bg-primary hover:bg-primaryMuted px-5 py-2.5 text-sm font-light text-white transition sm:px-6 sm:py-3 sm:text-base"
             >
               Começar Jornada
             </button>
@@ -76,57 +77,35 @@ export default function Home() {
       </header>
 
       {/* ================= Hero ================= */}
-      <div id="hero" ref={(el) => addToRefs(el, 0)}>
-        <Hero isVisible={visibleSections.has(0)} />
-      </div>
-
-      {/* ================= Philosophy ================= */}
-      <section
-        id="philosophy"
-        ref={(el) => addToRefs(el, 1)}
-        className={`bg-white px-4 py-16 transition-all duration-1000 sm:px-6 sm:py-24 lg:px-8 lg:py-32 ${visibleSections.has(1) ? 'opacity-100' : 'opacity-0'
-          }`}
-      >
-        <div className="mx-auto max-w-4xl text-center">
-          <p className="mb-6 font-serif text-3xl leading-[1.2] text-stone-900 sm:mb-8 sm:text-4xl lg:text-5xl xl:text-6xl">
-            Você não precisa mudar
-            <br />
-            <span className="italic">quem você é.</span>
-          </p>
-
-          <div className="mx-auto my-8 h-px w-24 bg-stone-300" />
-
-          <p className="text-xl font-light leading-relaxed text-stone-600 sm:text-2xl">
-            Você só precisa{' '}
-            <span className="font-semibold italic text-stone-900">
-              aprender a se posicionar com a sua verdade.
-            </span>
-          </p>
+      {/* ⚠️ Compensação do header fixo */}
+      <main className="pt-[calc(5rem+2rem)] sm:pt-40">
+        <div ref={(el) => addToRefs(el, 0)}>
+          <Hero isVisible={visibleSections.has(0)} />
         </div>
-      </section>
 
-      {/* ================= Offerings ================= */}
-      <div id="offerings" ref={(el) => addToRefs(el, 2)}>
-        <Offerings isVisible={visibleSections.has(2)} />
-      </div>
+        {/* ================= About ================= */}
+        <div ref={(el) => addToRefs(el, 1)}>
+          <About isVisible={visibleSections.has(1)} />
+        </div>
 
-      {/* ================= Benefits ================= */}
-      <div id="benefits" ref={(el) => addToRefs(el, 3)}>
-        <Benefits isVisible={visibleSections.has(3)} />
-      </div>
+        {/* ================= Offerings ================= */}
+        <div ref={(el) => addToRefs(el, 2)}>
+          <Offerings isVisible={visibleSections.has(2)} />
+        </div>
 
-      {/* ================= About ================= */}
-      <div id="about" ref={(el) => addToRefs(el, 4)}>
-        <About isVisible={visibleSections.has(4)} />
-      </div>
+        {/* ================= Benefits ================= */}
+        <div ref={(el) => addToRefs(el, 3)}>
+          <Benefits isVisible={visibleSections.has(3)} />
+        </div>
 
-      {/* ================= CTA ================= */}
-      <div id="cta" ref={(el) => addToRefs(el, 5)}>
-        <CTA isVisible={visibleSections.has(5)} />
-      </div>
+        {/* ================= CTA ================= */}
+        <div id="cta" ref={(el) => addToRefs(el, 4)}>
+          <CTA isVisible={visibleSections.has(4)} />
+        </div>
 
-      {/* ================= Footer ================= */}
-      <Footer />
+        {/* ================= Footer ================= */}
+        <Footer />
+      </main>
     </div>
   );
 }
