@@ -8,14 +8,27 @@ interface HeroProps {
 
 export default function Hero({ isVisible }: HeroProps) {
   return (
-    <section className="relative pt-24 sm:pt-32 lg:pt-36 pb-0 bg-secondarySoft overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section
+      className="relative pt-24 sm:pt-32 lg:pt-36 pb-0 overflow-hidden bg-secondarySoft"
+      style={{
+        backgroundImage: "url('/fundo.svg')",
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+      }}
+    >
+      {/* Overlay para suavizar o fundo */}
+      <div className="absolute inset-0 bg-secondarySoft/70 pointer-events-none" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-end lg:items-center">
 
           {/* Texto */}
           <div
             className={`max-w-xl space-y-6 sm:space-y-7 pb-8 sm:pb-0 transition-all duration-1000 ease-out ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              isVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-8'
             }`}
           >
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.15] text-primary">
@@ -52,38 +65,39 @@ export default function Hero({ isVisible }: HeroProps) {
             </button>
           </div>
 
-          {/* Imagem - Rente ao final em todos os tamanhos */}
+          {/* Imagem */}
           <div
             className={`relative flex justify-center lg:justify-end transition-all duration-1000 delay-200 ease-out ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              isVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-8'
             }`}
           >
             <div className="relative w-full max-w-md lg:max-w-lg">
+
               {/* Background decorativo */}
               <div className="absolute -top-8 -right-8 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
               <div className="absolute -bottom-8 -left-8 w-64 h-64 bg-secondaryMuted/30 rounded-full blur-3xl"></div>
-              
-              {/* Imagem sempre rente ao fundo */}
+
+              {/* Imagem rente ao final */}
               <div className="relative">
                 <img
-                  src="/alessandra.svg"
+                  src="/logoAbout.svg"
                   alt="Alessandra Rosa"
                   className="w-full h-auto drop-shadow-2xl relative z-10"
-                  style={{ 
-                    marginBottom: '-1px',
+                  style={{
+                    marginBottom: '50px',
                     maxHeight: '650px',
                     objectFit: 'contain',
-                    objectPosition: 'bottom'
+                    objectPosition: 'bottom',
                   }}
                 />
               </div>
             </div>
           </div>
+
         </div>
       </div>
-
-      {/* Gradiente suave apenas na imagem - não afeta o botão */}
-      <div className="absolute bottom-0 right-0 left-1/2 lg:left-auto lg:w-1/2 h-12 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
     </section>
   );
 }
