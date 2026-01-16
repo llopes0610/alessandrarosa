@@ -8,7 +8,7 @@ interface HeroProps {
 
 export default function Hero({ isVisible }: HeroProps) {
   return (
-    <section className="relative pt-32 sm:pt-40 pb-0 sm:pb-20 bg-secondarySoft overflow-hidden">
+    <section className="relative pt-32 sm:pt-40 pb-0 bg-secondarySoft overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-end lg:items-center">
 
@@ -52,27 +52,26 @@ export default function Hero({ isVisible }: HeroProps) {
             </button>
           </div>
 
-          {/* Imagem - Ajustada para Mobile */}
+          {/* Imagem - Rente ao final em todos os tamanhos */}
           <div
             className={`relative flex justify-center lg:justify-end transition-all duration-1000 delay-200 ease-out ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            {/* Container com aspect ratio fixo para evitar corte */}
             <div className="relative w-full max-w-md lg:max-w-lg">
               {/* Background decorativo */}
               <div className="absolute -top-8 -right-8 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
               <div className="absolute -bottom-8 -left-8 w-64 h-64 bg-secondaryMuted/30 rounded-full blur-3xl"></div>
               
-              {/* Imagem com padding inferior para evitar corte */}
-              <div className="relative pb-0 sm:pb-0">
+              {/* Imagem sempre rente ao fundo */}
+              <div className="relative">
                 <img
                   src="/alessandra.svg"
                   alt="Alessandra Rosa"
                   className="w-full h-auto drop-shadow-2xl relative z-10"
                   style={{ 
-                    marginBottom: '-1px', // Remove gap branco no mobile
-                    maxHeight: '600px',
+                    marginBottom: '-1px',
+                    maxHeight: '650px',
                     objectFit: 'contain',
                     objectPosition: 'bottom'
                   }}
