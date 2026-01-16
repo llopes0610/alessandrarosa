@@ -1,27 +1,36 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Offerings from '@/components/Offerings';
 import Benefits from '@/components/Benefits';
 import CTA from '@/components/CTA';
 import Footer from '@/components/Footer';
+import MentorshipActivity from '@/components/MentorshipActivity';
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [visibleSections, setVisibleSections] = useState<Set<number>>(new Set());
+
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
+      // Header state
       setScrolled(window.scrollY > 20);
 
+      // Section visibility
       sectionRefs.current.forEach((ref, index) => {
         if (!ref) return;
+
         const rect = ref.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.75) {
+        const triggerPoint = window.innerHeight * 0.75;
+
+        if (rect.top < triggerPoint) {
           setVisibleSections((prev) => {
+            if (prev.has(index)) return prev;
             const next = new Set(prev);
             next.add(index);
             return next;
@@ -31,18 +40,19 @@ export default function Home() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll();
+    handleScroll(); // inicial
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const addToRefs = (el: HTMLElement | null, index: number) => {
-    if (el) sectionRefs.current[index] = el;
+    sectionRefs.current[index] = el;
   };
 
   return (
     <div className="min-h-screen bg-stone-50">
-      {/* ================= Header ================= */}
+
+      {/* ================= HEADER ================= */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
@@ -52,7 +62,8 @@ export default function Home() {
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
-            {/* Logo */}
+
+            {/* LOGO */}
             <div className="flex items-center">
               <img
                 src="/logoNome.svg"
@@ -61,14 +72,21 @@ export default function Home() {
               />
             </div>
 
-            {/* CTA */}
+            {/* CTA HEADER */}
             <button
               onClick={() =>
                 document
                   .querySelector('#cta')
                   ?.scrollIntoView({ behavior: 'smooth' })
               }
-              className="rounded-full bg-primary hover:bg-primaryMuted px-5 py-2.5 text-sm font-light text-white transition sm:px-6 sm:py-3 sm:text-base"
+              className="
+                rounded-full
+                bg-primary hover:bg-primaryMuted
+                px-5 py-2.5 sm:px-6 sm:py-3
+                text-sm sm:text-base font-light
+                text-white
+                transition
+              "
             >
               Começar Jornada
             </button>
@@ -76,36 +94,43 @@ export default function Home() {
         </div>
       </header>
 
-      {/* ================= Hero ================= */}
-      {/* ⚠️ Compensação do header fixo */}
+      {/* ================= MAIN ================= */}
+      {/* compensação do header fixo */}
       <main className="pt-[calc(5rem+2rem)] sm:pt-40">
-        <div ref={(el) => addToRefs(el, 0)}>
+
+        {/* HERO */}
+        <section ref={(el) => addToRefs(el, 0)}>
           <Hero isVisible={visibleSections.has(0)} />
-        </div>
+        </section>
 
-        {/* ================= About ================= */}
-        <div ref={(el) => addToRefs(el, 1)}>
+        {/* ABOUT */}
+        <section ref={(el) => addToRefs(el, 1)}>
           <About isVisible={visibleSections.has(1)} />
-        </div>
+        </section>
 
-        {/* ================= Offerings ================= */}
-        <div ref={(el) => addToRefs(el, 2)}>
+        {/* OFFERINGS */}
+        <section ref={(el) => addToRefs(el, 2)}>
           <Offerings isVisible={visibleSections.has(2)} />
-        </div>
+        </section>
 
-        {/* ================= Benefits ================= */}
-        <div ref={(el) => addToRefs(el, 3)}>
+        {/* BENEFITS */}
+        <section ref={(el) => addToRefs(el, 3)}>
           <Benefits isVisible={visibleSections.has(3)} />
-        </div>
+        </section>
 
-        {/* ================= CTA ================= */}
-        <div id="cta" ref={(el) => addToRefs(el, 4)}>
+        {/* CTA */}
+        <section id="cta" ref={(el) => addToRefs(el, 4)}>
           <CTA isVisible={visibleSections.has(4)} />
-        </div>
+        </section>
 
-        {/* ================= Footer ================= */}
+        {/* FOOTER */}
         <Footer />
       </main>
+
+      {/* ================= PROVA SOCIAL ================= */}
+      {/* fica fora do fluxo principal */}
+      <MentorshipActivity />
+
     </div>
   );
 }
