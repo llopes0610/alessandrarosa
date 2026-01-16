@@ -147,7 +147,7 @@ export default function CTA({ isVisible }: CTAProps) {
           <div className="text-center group cursor-default">
             <div className="relative inline-block mb-3">
               <div className="absolute inset-0 bg-accent/20 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
-              <div className="relative text-3xl sm:text-4xl font-serif text-accent font-bold">15+</div>
+              <div className="relative text-3xl sm:text-4xl font-serif text-secondary font-bold">15+</div>
             </div>
             <p className="text-xs sm:text-sm text-white/70">Anos de experiência</p>
           </div>
