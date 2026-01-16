@@ -8,7 +8,7 @@ interface HeroProps {
 
 export default function Hero({ isVisible }: HeroProps) {
   return (
-    <section className="relative pt-32 sm:pt-40 pb-0 bg-secondarySoft overflow-hidden">
+    <section className="relative pt-24 sm:pt-32 lg:pt-36 pb-0 bg-secondarySoft overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-end lg:items-center">
 
@@ -82,8 +82,8 @@ export default function Hero({ isVisible }: HeroProps) {
         </div>
       </div>
 
-      {/* Curva suave na transição (opcional) */}
-      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent"></div>
+      {/* Gradiente suave apenas na imagem - não afeta o botão */}
+      <div className="absolute bottom-0 right-0 left-1/2 lg:left-auto lg:w-1/2 h-12 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
     </section>
   );
 }
