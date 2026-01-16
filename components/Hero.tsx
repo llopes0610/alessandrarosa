@@ -8,13 +8,13 @@ interface HeroProps {
 
 export default function Hero({ isVisible }: HeroProps) {
   return (
-    <section className="pt-32 sm:pt-40 pb-20 bg-secondarySoft">
+    <section className="relative pt-32 sm:pt-40 pb-0 sm:pb-20 bg-secondarySoft overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-end lg:items-center">
 
           {/* Texto */}
           <div
-            className={`max-w-xl space-y-7 transition-all duration-1000 ease-out ${
+            className={`max-w-xl space-y-6 sm:space-y-7 pb-8 sm:pb-0 transition-all duration-1000 ease-out ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
@@ -30,7 +30,7 @@ export default function Hero({ isVisible }: HeroProps) {
               Agora aprenda a falar por ela.
             </p>
 
-            <p className="font-sans uppercase tracking-widest text-xs text-stone-800">
+            <p className="font-sans uppercase tracking-widest text-xs text-stone-800 font-medium">
               Você não está aqui por acaso
             </p>
 
@@ -46,26 +46,45 @@ export default function Hero({ isVisible }: HeroProps) {
               <li>• Ou apenas cansada de não ser ouvida</li>
             </ul>
 
-            <button className="inline-flex items-center gap-3 bg-primary hover:bg-primaryMuted text-white px-8 py-4 rounded-full transition hover:shadow-lg">
+            <button className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-primary hover:bg-primaryMuted text-white px-8 py-4 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105">
               Quero fazer parte da mentoria
               <ArrowRight size={18} />
             </button>
           </div>
 
-          {/* Imagem */}
+          {/* Imagem - Ajustada para Mobile */}
           <div
-            className={`flex justify-center transition-all duration-1000 delay-200 ease-out ${
+            className={`relative flex justify-center lg:justify-end transition-all duration-1000 delay-200 ease-out ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <img
-              src="/alessandra.svg"
-              alt="Alessandra Rosa"
-              className="w-full max-w-md lg:max-w-lg h-auto drop-shadow-xl"
-            />
+            {/* Container com aspect ratio fixo para evitar corte */}
+            <div className="relative w-full max-w-md lg:max-w-lg">
+              {/* Background decorativo */}
+              <div className="absolute -top-8 -right-8 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-8 -left-8 w-64 h-64 bg-secondaryMuted/30 rounded-full blur-3xl"></div>
+              
+              {/* Imagem com padding inferior para evitar corte */}
+              <div className="relative pb-0 sm:pb-0">
+                <img
+                  src="/alessandra.svg"
+                  alt="Alessandra Rosa"
+                  className="w-full h-auto drop-shadow-2xl relative z-10"
+                  style={{ 
+                    marginBottom: '-1px', // Remove gap branco no mobile
+                    maxHeight: '600px',
+                    objectFit: 'contain',
+                    objectPosition: 'bottom'
+                  }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Curva suave na transição (opcional) */}
+      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent"></div>
     </section>
   );
 }
