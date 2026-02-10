@@ -18,15 +18,18 @@ const inter = Inter({
   display: "swap",
 });
 
-/* ================= SEO Metadata ================= */
+/* ================= SEO + SOCIAL METADATA ================= */
 export const metadata: Metadata = {
   metadataBase: new URL("https://alessandrarosa.com.br"),
+
   title: {
     default: "Recomeçar com Voz e Posicionamento | Alessandra Rosa",
     template: "%s | Alessandra Rosa",
   },
+
   description:
     "Mentoria para mulheres que desejam resgatar sua voz, identidade e posicionamento com propósito. Um caminho de clareza, limites e recomeço consciente.",
+
   keywords: [
     "mentoria feminina",
     "recomeço feminino",
@@ -37,9 +40,11 @@ export const metadata: Metadata = {
     "mentoria para mulheres",
     "desenvolvimento pessoal feminino",
   ],
+
   authors: [{ name: "Alessandra Rosa" }],
   creator: "Alessandra Rosa",
   publisher: "Alessandra Rosa Mentoria",
+
   robots: {
     index: true,
     follow: true,
@@ -48,11 +53,14 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
+
   alternates: {
     canonical: "https://alessandrarosa.com.br",
   },
+
+  /* ================= Open Graph (WhatsApp, Facebook, Instagram) ================= */
   openGraph: {
-    title: "Recomeçar com Voz e Posicionamento",
+    title: "Recomeçar com Voz e Posicionamento | Alessandra Rosa",
     description:
       "Uma mentoria para mulheres que desejam se posicionar com verdade, clareza e propósito.",
     url: "https://alessandrarosa.com.br",
@@ -61,12 +69,22 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/alessandra.svg",
+        url: "/alessandra.jpg",
         width: 1200,
         height: 630,
-        alt: "Recomeçar com Voz e Posicionamento",
+        alt: "Alessandra Rosa — Mentora de Mulheres",
       },
     ],
+  },
+
+  /* ================= Twitter / X Card ================= */
+  twitter: {
+    card: "summary_large_image",
+    title: "Recomeçar com Voz e Posicionamento | Alessandra Rosa",
+    description:
+      "Mentoria para mulheres que desejam resgatar sua voz, identidade e posicionamento com propósito.",
+    images: ["/alessandra.jpg"],
+    creator: "@alessandrarosa", // opcional — pode remover se não usar
   },
 };
 
@@ -79,7 +97,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
-        {/* ===== Schema.org – Autoridade ===== */}
+        {/* ================= Schema.org – Autoridade ================= */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -90,6 +108,7 @@ export default function RootLayout({
               description:
                 "Mentora de mulheres em recomeço com foco em posicionamento, identidade e voz.",
               url: "https://alessandrarosa.com.br",
+              image: "https://alessandrarosa.com.br/alessandra.jpg",
               sameAs: [],
             }),
           }}
