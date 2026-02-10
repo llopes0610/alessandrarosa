@@ -1,92 +1,84 @@
 'use client';
 
-import { Instagram, Youtube, Linkedin } from 'lucide-react';
+import Link from 'next/link';
 
 const navigation = [
-  { label: 'Início', href: '#hero' },
-  { label: 'Propósito', href: '#philosophy' },
-  { label: 'O que oferecemos', href: '#offerings' },
-  { label: 'Benefícios', href: '#benefits' },
-  { label: 'Sobre', href: '#about' },
-  { label: 'Começar', href: '#cta' },
+  { label: 'Início', href: '/' },
+  { label: 'Serviços', href: '/servicos' },
+  { label: 'Sobre', href: '/sobre' },
+  { label: 'Contato', href: '/contato' },
 ];
 
 export default function Footer() {
-  const handleScroll = (id: string) => {
-    const el = document.querySelector(id);
-    el?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <footer className="bg-stone-950 text-stone-200 px-6 py-16">
-      <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div className="mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
 
-        {/* Brand */}
+        {/* BRAND / POSICIONAMENTO */}
         <div>
-          <h3 className="font-serif text-2xl text-white mb-2">
-            Recomeçar
+          <h3 className="font-serif text-2xl text-white mb-4">
+            Alessandra Rosa
           </h3>
-          <p className="text-sm text-stone-400 leading-relaxed">
-            Um espaço de reconexão, clareza e posicionamento.
-            <br />
-            Não para mudar quem você é, mas para viver com verdade.
+
+          <p className="text-sm text-stone-400 leading-relaxed max-w-sm">
+            Mentoria e desenvolvimento humano com foco em comunicação consciente,
+            posicionamento e fortalecimento da identidade feminina.
           </p>
         </div>
 
-        {/* Navigation */}
+        {/* NAVEGAÇÃO */}
         <div>
-          <h4 className="uppercase tracking-widest text-xs text-stone-400 mb-4">
+          <h4 className="uppercase tracking-widest text-xs text-stone-400 mb-6">
             Navegação
           </h4>
-          <ul className="space-y-3 text-sm">
+
+          <ul className="space-y-4 text-sm">
             {navigation.map((item) => (
               <li key={item.href}>
-                <button
-                  onClick={() => handleScroll(item.href)}
-                  className="hover:text-white transition-colors"
+                <Link
+                  href={item.href}
+                  className="
+                    inline-block
+                    text-stone-300
+                    hover:text-white
+                    transition-colors
+                  "
                 >
                   {item.label}
-                </button>
+                </Link>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Social */}
+        {/* CONTATO (SEM REDES SOCIAIS) */}
         <div>
-          <h4 className="uppercase tracking-widest text-xs text-stone-400 mb-4">
-            Conecte-se
+          <h4 className="uppercase tracking-widest text-xs text-stone-400 mb-6">
+            Contato
           </h4>
 
-          <div className="flex gap-4">
-            <a
-              href="https://instagram.com/"
-              target="_blank"
-              className="p-3 rounded-full border border-white/10 hover:bg-white/5 transition"
-            >
-              <Instagram size={18} />
-            </a>
+          <p className="text-sm text-stone-400 leading-relaxed mb-4">
+            Para dúvidas, informações ou direcionamento sobre os serviços,
+            entre em contato diretamente.
+          </p>
 
-            <a
-              href="https://youtube.com/"
-              target="_blank"
-              className="p-3 rounded-full border border-white/10 hover:bg-white/5 transition"
-            >
-              <Youtube size={18} />
-            </a>
-
-            <a
-              href="https://linkedin.com/"
-              target="_blank"
-              className="p-3 rounded-full border border-white/10 hover:bg-white/5 transition"
-            >
-              <Linkedin size={18} />
-            </a>
-          </div>
+          <Link
+            href="/contato"
+            className="
+              inline-flex items-center gap-2
+              text-sm font-medium
+              text-white
+              border-b border-white/30
+              hover:border-white
+              transition
+            "
+          >
+            Ir para página de contato →
+          </Link>
         </div>
       </div>
 
-      {/* Divider */}
+      {/* DIVISOR */}
       <div className="border-t border-white/10 mt-16 pt-8 text-center">
         <p className="text-xs text-stone-500 tracking-wide">
           © {new Date().getFullYear()} Alessandra Rosa. Todos os direitos reservados.

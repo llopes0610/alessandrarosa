@@ -1,27 +1,20 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Offerings from '@/components/Offerings';
 import Benefits from '@/components/Benefits';
-import CTA from '@/components/CTA';
-import Footer from '@/components/Footer';
+import CTA from '@/components/CTA';;
 import MentorshipActivity from '@/components/MentorshipActivity';
 
 export default function Home() {
-  const [scrolled, setScrolled] = useState(false);
   const [visibleSections, setVisibleSections] = useState<Set<number>>(new Set());
-
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Header state
-      setScrolled(window.scrollY > 20);
-
-      // Section visibility
       sectionRefs.current.forEach((ref, index) => {
         if (!ref) return;
 
@@ -40,7 +33,7 @@ export default function Home() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // inicial
+    handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -52,47 +45,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-stone-50">
 
-      {/* ================= HEADER ================= */}
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm'
-            : 'bg-transparent'
-        }`}
-      >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-20 items-center justify-between">
-
-            {/* LOGO */}
-            <div className="flex items-center">
-              <img
-                src="/logoNome.svg"
-                alt="Recomeçar com Propósito — Alessandra Rosa"
-                className="w-36 sm:w-48 h-auto"
-              />
-            </div>
-
-            {/* CTA HEADER */}
-            <button
-              onClick={() =>
-                document
-                  .querySelector('#cta')
-                  ?.scrollIntoView({ behavior: 'smooth' })
-              }
-              className="
-                rounded-full
-                bg-primary hover:bg-primaryMuted
-                px-5 py-2.5 sm:px-6 sm:py-3
-                text-sm sm:text-base font-light
-                text-white
-                transition
-              "
-            >
-              Começar Jornada
-            </button>
-          </div>
-        </div>
-      </header>
+   
 
       {/* ================= MAIN ================= */}
       {/* compensação do header fixo */}
@@ -108,7 +61,7 @@ export default function Home() {
           <About isVisible={visibleSections.has(1)} />
         </section>
 
-        {/* OFFERINGS */}
+        {/* OFFERINGS / SERVIÇOS */}
         <section ref={(el) => addToRefs(el, 2)}>
           <Offerings isVisible={visibleSections.has(2)} />
         </section>
@@ -118,17 +71,15 @@ export default function Home() {
           <Benefits isVisible={visibleSections.has(3)} />
         </section>
 
-        {/* CTA */}
-        <section id="cta" ref={(el) => addToRefs(el, 4)}>
+        {/* CTA FINAL */}
+        <section ref={(el) => addToRefs(el, 4)}>
           <CTA isVisible={visibleSections.has(4)} />
         </section>
 
-        {/* FOOTER */}
-        <Footer />
+    
       </main>
 
-      {/* ================= PROVA SOCIAL ================= */}
-      {/* fica fora do fluxo principal */}
+      {/* ================= PROVA SOCIAL (FIXO) ================= */}
       <MentorshipActivity />
 
     </div>

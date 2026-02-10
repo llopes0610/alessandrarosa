@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
 /* ================= Fonts ================= */
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -103,7 +106,16 @@ export default function RootLayout({
           font-sans
         `}
       >
-        {children}
+        {/* ================= HEADER GLOBAL ================= */}
+        <Header />
+
+        {/* ================= CONTEÚDO ================= */}
+        <main className="pt-24 sm:pt-32">
+          {children}
+        </main>
+
+        {/* ================= FOOTER GLOBAL ================= */}
+        <Footer />
       </body>
     </html>
   );

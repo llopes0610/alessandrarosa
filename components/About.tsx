@@ -41,10 +41,6 @@ export default function About({ isVisible }: AboutProps) {
             Alessandra Rosa
           </h2>
 
-          <p className="uppercase tracking-[0.3em] text-xs sm:text-sm text-stone-500 mt-2">
-            Mentora
-          </p>
-
           <div className="flex justify-center gap-3 mt-6">
             <span className="w-12 h-px bg-gradient-to-r from-transparent to-primary/40" />
             <span className="w-2 h-2 rounded-full bg-accent" />
@@ -103,20 +99,21 @@ export default function About({ isVisible }: AboutProps) {
             }`}
           >
             {[
-              {
-                icon: Award,
-                title: 'Representante Comercial',
-                desc: 'Experiência sólida em negociação e posicionamento profissional',
+               {
+                icon: Sparkles,
+                title: 'Mentora de mulheres em recomeço',
+                desc: 'Guiando mulheres a se posicionarem com clareza e verdade',
               },
               {
                 icon: Heart,
                 title: 'Gestão de Relações Humanas',
                 desc: 'Atuação focada em desenvolvimento pessoal e emocional',
               },
+             
               {
-                icon: Sparkles,
-                title: 'Mentora de mulheres em recomeço',
-                desc: 'Guiando mulheres a se posicionarem com clareza e verdade',
+                icon: Award,
+                title: 'Representante Comercial',
+                desc: 'Experiência sólida em negociação e posicionamento profissional',
               },
             ].map((item, i) => (
               <div
